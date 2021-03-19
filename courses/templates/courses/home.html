@@ -1,19 +1,18 @@
 {% extends 'courses/main-layout.html'%}
 {% block main_section %}
+  <div class="courses">
   {% for course in courses %}
-
-      <div>
-        <h1>{{ course.title }}</h1>
-        <p>{{ course.description }}</p>
+      <div class="course m-3">
+        <h3>{{ course.title }}</h3>
 
         {% if course.img %}
         <img src="{{ course.img.url }}" alt="{{ course.title }}">
         {% else %}
         <img src="/pictures/default.png" alt="{{ course.title }}">
         {% endif %}
-        <p>hi</p>
+          <a href="{{ course.get_absolute_url }}" class="btn btn-warning mt-3">Просмотреть</a>
       </div>
-      <p>hi2</p>
+
   {% endfor %}
-<p>hi3</p>
+  </div>
 {% endblock %}

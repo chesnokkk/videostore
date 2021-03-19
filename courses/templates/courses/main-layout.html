@@ -5,11 +5,36 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <link rel="stylesheet"  href="{% static 'courses/main.css' %}">
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/5.0.0-alpha2/css/bootstrap.min.css">
   <title>{{ title }}</title>
 </head>
 <body>
+<header class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-body border-bottom shadow-sm">
+  <p class="h5 my-0 me-md-auto fw-normal">Shopster</p>
+  <nav class="my-2 my-md-0 me-md-3">
+    <a class="p-2 text-dark" href="{% url 'home' %}">Главная</a>
+    <a class="p-2 text-dark" href="#">Enterprise</a>
+    <a class="p-2 text-dark" href="#">Support</a>
+    <a class="p-2 text-dark" href="#">Pricing</a>
+  </nav>
+  <a class="btn btn-outline-primary" href="#">Sign up</a>
+</header>
   {% block main_section %}
 
   {% endblock %}
+
+<footer class="bd-footer p-3 p-md-5 mt-5 bg-light text-center text-sm-start">
+  <div class="container">
+    <ul class="bd-footer-links ps-0 mb-3">
+      <li class="d-inline-block"><a href="https://github.com/twbs">GitHub</a></li>
+      <li class="d-inline-block ms-3"><a href="https://twitter.com/getbootstrap">Twitter</a></li>
+      <li class="d-inline-block ms-3"><a href="/docs/5.0/examples/">Examples</a></li>
+      <li class="d-inline-block ms-3"><a href="/docs/5.0/about/overview/">About</a></li>
+    </ul>
+    <p class="mb-0">Designed and built with all the love in the world by the <a href="/docs/5.0/about/team/">Bootstrap team</a> with the help of <a href="https://github.com/twbs/bootstrap/graphs/contributors">our contributors</a>.</p>
+    <p class="mb-0">Currently v5.0.0-beta2. Code licensed <a href="https://github.com/twbs/bootstrap/blob/main/LICENSE" target="_blank" rel="license noopener">MIT</a>, docs <a href="https://creativecommons.org/licenses/by/3.0/" target="_blank" rel="license noopener">CC BY 3.0</a>.</p>
+  </div>
+</footer>
 </body>
 </html>
