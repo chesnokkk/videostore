@@ -1,6 +1,24 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.views.generic import ListView, DetailView
 from .models import Course, Lesson
+from .forms import CreateForm
+from django.contrib import messages
+from django.core.exceptions import ValidationError
+
+
+def create_course(request):
+    if request.method == "POST":
+        form = CreateForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            title = form.cleaned_data.get('title')
+            messages.success(request, f'Курс {title} успешно добавлен')
+            return redirect('/')
+
+    else:
+        form = CreateForm()
+
+    return render(request,'courses/create_course.html', {'form':form})
 
 
 class HomePage(ListView):
