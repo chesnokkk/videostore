@@ -1,0 +1,25 @@
+{% extends 'courses/main-layout.html'%}
+
+
+{% block title %}
+    Личный кабинет
+{% endblock %}
+
+
+{% block main_section %}
+{% if not user.is_authenticated %}
+<div class="form-register justify-content-center text-align-center">
+ <h1 class="reg-h text-warning mt-3 ml-2">Вход в учетную запись</h1>
+  <form class="enter" method="post">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-outline-warning" name="button">Войти</button>
+  </form>
+</div>
+
+{% else %}
+
+{% endif %}
+
+
+{% endblock %}

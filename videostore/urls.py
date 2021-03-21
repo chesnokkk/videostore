@@ -17,10 +17,19 @@ from django.contrib import admin
 from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
+from users import views as userViews
+from django.contrib.auth import views as authViews
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('courses.urls'))
+    path('', include('courses.urls')),
+    path('register', userViews.register, name='register'),
+    path('user', authViews.LoginView.as_view(template_name='users/user.html'), name='user'),
+    path('exit', authViews.LogoutView.as_view(template_name='users/exit.html'), name='exit'),
+    path('profile', userViews.profile, name='profile'),
+    path('mess', userViews.MessCreateView.as_view(), name='mess'),
+    path('sending', userViews.sending, name='send'),
+
 ]
 
 if settings.DEBUG:

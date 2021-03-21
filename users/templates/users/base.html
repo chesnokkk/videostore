@@ -1,0 +1,58 @@
+{% load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="{% static 'servicies/style.css'%}">
+</head>
+<body class="bg-dark">
+  <header >
+    <div class="header d-flex-row justify-content-between w-100">
+        <div class="logo m-3 text-white">
+            <a href="{% url 'main' %}" class="btn1 text-white"><h1>Simpy</h1></a>
+        </div>
+        <div class="gap">
+        </div>
+        <div class="menu align-middle">
+          <div class="we d-block">
+            <a href="{% url 'uslugi' %}" class="services text-white m-2">Услуги</a>
+            <a href="#" class="contacts text-white m-2">Контакты</a>
+            <a href="#" class="about_us text-white m-2">Про нас</a>
+          </div>
+          <div class="d-flex">
+              {% if not user.is_authenticated %}
+                <a href="{% url 'register' %}">
+                <button type="button" class="bg-dark button1 btn-register btn-outline-warning" name="register">Регистрация</button>
+                </a>
+                <a href="{% url 'user' %}">
+                <button type="button" class="bg-dark button1 btn-register btn-outline-warning" name="enter">Войти</button>
+                </a>
+
+              {% else %}
+                <a href="{% url 'user' %}">
+                <button type="button" class="bg-dark button1 btn-register btn-outline-warning" name="login">Профиль</button>
+                </a>
+                <a href="{% url 'exit' %}">
+                <button type="button" class="bg-dark ml-2 button1 btn-register btn-outline-warning" name="logout">Выйти</button>
+                </a>
+              {% endif %}
+          </div>
+        </div>
+    </div>
+  </header>
+  {% if messages%}
+    {% for mess in messages%}
+      <div class="alert alert-success">
+          {{ mess }}
+      </div>
+    {% endfor%}
+  {% endif %}
+  <main class="w-100">
+    <div class="main bg-secondary m-5 ">
+        {%block main_info %}{% endblock %}
+    </div>
+  </main>
+</body>
+</html>
