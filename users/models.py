@@ -19,11 +19,16 @@ class Profile(models.Model):
     ('m','Male'),
     ('f','Female')
     )
+    TARIF = (
+        ('Полный пакет', 'full'),
+        ('Бесплатный пакет', 'free')
+    )
 
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     img = models.ImageField('Photo', default='default.png', upload_to='user_images')
     sex = models.CharField(max_length=6, choices=SEX, default='m')
     agreement = models.BooleanField(null=True, blank = True)
+    account_type = models.CharField(choices=TARIF, default='Бесплатный пакет', max_length=30)
 
     def __str__(self):
         return f'Профайл пользователя {self.user.username}'

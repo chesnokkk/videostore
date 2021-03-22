@@ -60,3 +60,6 @@ class LessonDetailPage(DetailView):
         ctx['desc'] = lesson[0]['description']
         ctx['video'] = lesson[0]['video_url'].split('=')[1]
         return ctx
+
+def tarrifsPage(request):
+    return render(request, 'courses/tarrifs.html', {'title':'Тарифы на сайте'})
