@@ -3,7 +3,7 @@
   <div class="main-block">
       <div class="one-course m-3">
         <h3>{{ object.title }}</h3>
-          <p>{{ object.description}}</p>
+        <p>{{ object.description}}</p>
 
         {% if course.img %}
         <img src="{{ course.img.url }}" alt="{{ course.title }}">
@@ -37,5 +37,10 @@
           {% endif %}
       {% endif %}
       </div>
+      {% load comment_tags %}
+      {% render_comments obj request %}
+      {% include_bootstrap %}
+      {% get_comments_count obj user %}
+
   </div>
 {% endblock %}

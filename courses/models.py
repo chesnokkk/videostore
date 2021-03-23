@@ -1,6 +1,17 @@
 from django.db import models
 from django.urls import reverse
 from PIL import Image
+from django.contrib.contenttypes.fields import GenericRelation
+from comment.models import Comment
+from users.models import Profile
+
+
+class Post(models.Model):
+    author = models.ForeignKey(Profile, on_delete=models.CASCADE)
+    title = models.CharField(max_length=200)
+    body = models.TextField()
+    # the field name should be comments
+    comments = GenericRelation(Comment)
 
 
 class Course(models.Model):
@@ -16,6 +27,7 @@ class Course(models.Model):
     def get_absolute_url(self):
         return reverse('course-detail', kwargs={'slug': self.slug})
 
+
 class Lesson(models.Model):
     slug = models.SlugField()
     title = models.CharField(max_length=120)
@@ -28,4 +40,4 @@ class Lesson(models.Model):
         return self.title
 
     def get_absolute_url(self):
-        return reverse('lesson-detail', kwargs={'slug': self.course.slug, 'lesson_slug':self.slug})
+        return reverse('lesson-detail', kwargs={'slug': self.course.slug, 'lesson_slug': self.slug})

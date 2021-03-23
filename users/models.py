@@ -3,6 +3,7 @@ from django.contrib.auth.models import User
 from PIL import Image
 from django.urls import reverse
 
+
 class Mess(models.Model):
     title = models.CharField(max_length=100, default="NO_TOPIC", help_text="Тема письма")
     email = models.EmailField(help_text="Ваша почта")
@@ -11,8 +12,10 @@ class Mess(models.Model):
     class Meta:
         verbose_name = 'Сообщение'
         verbose_name_plural = 'Сообщения'
+
     def get_absolute_url(self):
         return reverse('send')
+
 
 class Profile(models.Model):
     SEX = (
